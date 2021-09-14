@@ -26,6 +26,11 @@
 
     console.log("console log");
 
+    /**
+     * 
+     * INIT
+     * 
+     **/
     var notificationHandler = function (data) {
       // Do something with the notifications
       console.log("AGENT WIDGET SDK: " + "notificationHandler");
@@ -48,9 +53,15 @@
       visitorBlurredCallback: blurHandler
     });
 
+    /**
+     * 
+     * GET
+     * 
+     **/
     var onSuccess = function (data) {
       // Do something with the returning data
       console.log("AGENT WIDGET SDK: " + "onSuccess");
+      console.log(data);
     };
 
     var onError = function (err) {
@@ -61,6 +72,44 @@
     var pathToData = "visitorInfo.visitorName";
 
     lpTag.agentSDK.get(pathToData, onSuccess, onError);
+
+
+    /**
+     * 
+     * BIND (chatTranscript)
+     * 
+     **/
+    var updateCallback = function (data) {
+      console.log("AGENT WIDGET SDK: " + "BIND - updateCallback");
+      // Do something with the returning data
+      var path = data.key;
+      var value = data.newValue;
+      // called each time the value is updated.
+      // If there's an existing value when bind is called - this callback
+      // will be called with the existing value
+      console.log("AGENT WIDGET SDK: " + "BIND - Path: " + path);
+      console.log("AGENT WIDGET SDK: " + "BIND - value: " + value);
+
+      var commandData = {
+        text: "Some text from SDK command"
+      };
+      lpTag.agentSDK.command("Write ChatLine", commandData);
+    };
+
+    var notifyWhenDone = function (err) {
+      console.log("AGENT WIDGET SDK: " + "BIND - notifyWhenDone");
+      if (err) {
+        // Do something with the error
+        console.log("AGENT WIDGET SDK: " + "BIND - notifyWhenDone ERROR:" + err);
+      }
+      // called when the bind is completed successfully,
+      // or when the action terminated with an error.
+    };
+
+    var pathToData = "chatTranscript";
+
+    lpTag.agentSDK.bind(pathToData, updateCallback, notifyWhenDone);
+
 
 
   </script>
