@@ -21,24 +21,34 @@
 <body style="background:rgb(19, 129, 167);">
 
   <h1>V0.1</h1>
+  <h4>LOG:</h4>
+  <div id="widgetLog"></div>
 
   <script>
+
+    function widgetLog(message) {
+      const widgetLog = document.getElementById("widgetLog");
+      widgetLog.innerHTML += `<p>${message}</p>`
+    }
+
+    widgetLog("START");
+
     {
       var notificationHandler = function (data) {
         // Do something with the notifications
-        console.log("AGENT WIDGET SDK: " + "notificationHandler");
+        widgetLog("AGENT WIDGET SDK: " + "notificationHandler");
       };
 
       var focusHandler = function () {
         // Do something when the visitor is focused
         // Assume the visitor is focused to begin with
-        console.log("AGENT WIDGET SDK: " + "focusHandler");
+        widgetLog("AGENT WIDGET SDK: " + "focusHandler");
       };
 
       var blurHandler = function () {
         // Do something when the visitor is blurred
         // Assume the visitor is focused to begin with
-        console.log("AGENT WIDGET SDK: " + "blurHandler");
+        widgetLog("AGENT WIDGET SDK: " + "blurHandler");
       };
     }
     lpTag.agentSDK.init({
