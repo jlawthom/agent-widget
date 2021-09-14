@@ -21,35 +21,26 @@
 <body style="background:rgb(19, 129, 167);">
 
   <h1>V0.1</h1>
-  <h4>LOG:</h4>
-  <div id="widgetLog"></div>
 
   <script>
 
-    function widgetLog(message) {
-      const widgetLog = document.getElementById("widgetLog");
-      widgetLog.innerHTML += `<p>${message}</p>`;
-    }
-
     console.log("console log");
-    widgetLog("START");
-
 
     var notificationHandler = function (data) {
       // Do something with the notifications
-      widgetLog("AGENT WIDGET SDK: " + "notificationHandler");
+      console.log("AGENT WIDGET SDK: " + "notificationHandler");
     };
 
     var focusHandler = function () {
       // Do something when the visitor is focused
       // Assume the visitor is focused to begin with
-      widgetLog("AGENT WIDGET SDK: " + "focusHandler");
+      console.log("AGENT WIDGET SDK: " + "focusHandler");
     };
 
     var blurHandler = function () {
       // Do something when the visitor is blurred
       // Assume the visitor is focused to begin with
-      widgetLog("AGENT WIDGET SDK: " + "blurHandler");
+      console.log("AGENT WIDGET SDK: " + "blurHandler");
     };
     lpTag.agentSDK.init({
       notificationCallback: notificationHandler,
@@ -59,12 +50,12 @@
 
     var onSuccess = function (data) {
       // Do something with the returning data
-      widgetLog("AGENT WIDGET SDK: " + "onSuccess");
+      console.log("AGENT WIDGET SDK: " + "onSuccess");
     };
 
     var onError = function (err) {
       // Do something with the error
-      widgetLog("AGENT WIDGET SDK: " + "onError");
+      console.log("AGENT WIDGET SDK: " + "onError");
     };
 
     var pathToData = "visitorInfo.visitorName";
