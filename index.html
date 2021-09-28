@@ -113,24 +113,37 @@
     var historyIndex = null;
     SDK.init();
 
-    //success function for getting the engagement info from the sdk
-    var onSuccess = function (data) {
-      //if the skill is not set, it will be a null value, not unskilled
-      skill = data.skill;
-      // language(skill, loadLanguages);
-      console.log(data);
-      console.log(data.skill);
-    };
-    //error is called if we are not able to get the engagement infor from the sdk
-    var onError = function (err) {
-      // Do something with the error
-      console.log(err);
-    };
+    var visitorChatHistory = [];
+
+    var updateCallback = function(data) {
+            // called each time the value is updated; if there is an existing value when bind
+            //is called - this callback will be called with the existing value
+            var newData = data.newValue.lines.filter(line => line.source === 'visitor')
+
+            visitorChatHistory = visitorChatHistory.concat(newData);
+
+            console.log("newData");
+            console.log(newData);
+
+            // if(newData.length !== 0) {
+            //     translateVisitor(onCompleteVisitor);
+
+            // }
+        };
 
 
-    //path to the engagementInfo from the sdk
-    var pathToEngagementInfo = "engagementInfo";
-    SDK.get(pathToEngagementInfo, onSuccess, onError);
+        var notifyWhenDone = function(err) {
+            if (err) {
+                // Do something with the error
+            }
+            // called when the bind is completed successfully,
+            // or when the action terminated with an error
+        };
+
+        //path to the chat transcript from the sdk
+        var pathToData = "chatTranscript";
+        // bin the chat transcript so it will listen for new chatlines
+        SDK.bind(pathToData, updateCallback, notifyWhenDone);
   </script>
 
 
