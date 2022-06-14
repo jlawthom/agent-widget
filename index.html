@@ -103,13 +103,6 @@
     var SDK = lpTag.agentSDK;
     SDK.init();
 
-    var onSDKGetClick = function () {
-      console.log("onSDKGetClick");
-      //path to the engagementInfo from the sdk
-      var pathToEngagementInfo = "engagementInfo";
-      SDK.get(pathToEngagementInfo, onGetSuccess, onGetError);
-    }
-
     //success function for getting the engagement info from the sdk
     var onGetSuccess = function (data) {
       console("onGetSuccess:")
@@ -121,6 +114,13 @@
       console("onGetError:")
       console.log(err);
     };
+
+    var onSDKGetClick = function () {
+      console.log("onSDKGetClick");
+      //path to the engagementInfo from the sdk
+      var pathToEngagementInfo = "engagementInfo";
+      SDK.get(pathToEngagementInfo, onGetSuccess, onGetError);
+    }
 
     //path to the chat transcript from the sdk
     var pathToData = "chatTranscript";
