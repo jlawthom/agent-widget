@@ -12,6 +12,7 @@
         var SDK = lpTag.agentSDK;
         var historyIndex = null;
         SDK.init();
+        
         var loadLanguages = function(data){
             languageModels = data.languages.models
             if(data.skillFound){
