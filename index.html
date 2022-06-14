@@ -35,7 +35,7 @@
   <div class="container">
     <div class="row row-centered">
       <div class="col-md-12 page-header">
-        <h2 translate="no" class="text-shade">Translation Widget v1.2</h2>
+        <h2 translate="no" class="text-shade">Translation Widget v1.3</h2>
       </div>
     </div>
     <!-- Visitor Chat Area -->
@@ -104,6 +104,7 @@
     SDK.init();
 
     var onSDKGetClick = function () {
+      console.log("onSDKGetClick");
       //path to the engagementInfo from the sdk
       var pathToEngagementInfo = "engagementInfo";
       SDK.get(pathToEngagementInfo, onGetSuccess, onGetError);
