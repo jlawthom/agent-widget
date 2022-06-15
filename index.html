@@ -100,8 +100,29 @@
   <!-- End of Container -->
   <script>
 
+    var notificationHandler = function (data) {
+      // Do something with the notifications
+      console.log("notificationHandler");
+    };
+
+    var focusHandler = function () {
+      // Do something when the visitor is focused
+      // Assume the visitor is focused to begin with
+    };
+
+    var blurHandler = function () {
+      // Do something when the visitor is blurred
+      // Assume the visitor is focused to begin with
+    };
+
     var SDK = lpTag.agentSDK;
-    SDK.init();
+    SDK.init({
+      notificationCallback: notificationHandler,
+      visitorFocusedCallback: focusHandler,
+      visitorBlurredCallback: blurHandler
+    });
+
+
 
     //success function for getting the engagement info from the sdk
     var onGetSuccess = function (data) {
