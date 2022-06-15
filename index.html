@@ -147,16 +147,19 @@
     //path to the chat transcript from the sdk
     var pathToData = "chatTranscript";
     // bin the chat transcript so it will listen for new chatlines
-    SDK.bind(pathToData, chatTranscriptCallback, chatTranscriptErrorCallback);
+    SDK.bind(pathToData, chatTranscriptCallback, notifyWhenDone);
 
     var chatTranscriptCallback = function (data) {
       console.log("chatTranscriptCallback:");
       console.log(data);
     }
 
-    var chatTranscriptErrorCallback = function (err) {
-      console.log("chatTranscriptErrorCallback:");
-      console.log(err);
+    var notifyWhenDone = function (err) {
+      console.log("notifyWhenDone (Bind):");
+      if (err) {
+        console.log("error:")
+        console.log(err);
+      }
     }
 
   </script>
