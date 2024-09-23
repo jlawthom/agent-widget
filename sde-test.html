@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Query Parameter Display</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        .param-container {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .param-item {
+            margin-bottom: 10px;
+        }
+        .param-key {
+            font-weight: bold;
+            color: #555;
+        }
+        .param-value {
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Query Parameters</h1>
+    <div id="queryParams" class="param-container">
+        <!-- Query parameters will be displayed here -->
+    </div>
+
+    <script>
+        // Function to get the query parameters
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            const queryParamsContainer = document.getElementById('queryParams');
+            
+            // Check if there are any parameters
+            if (!params.entries().next().done) {
+                params.forEach((value, key) => {
+                    const paramDiv = document.createElement('div');
+                    paramDiv.classList.add('param-item');
+                    paramDiv.innerHTML = `<span class="param-key">${key}:</span> <span class="param-value">${value}</span>`;
+                    queryParamsContainer.appendChild(paramDiv);
+                });
+            } else {
+                queryParamsContainer.innerHTML = '<p>No query parameters found!</p>';
+            }
+        }
+
+        // Call the function to display query parameters when the page loads
+        window.onload = getQueryParams;
+    </script>
+
+</body>
+</html>
